@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Notes</title>
+    <link rel="stylesheet" href="/src/output.css">
+</head>
+<body class="bg-slate-500 flex flex-col justify-center items-center h-screen">
+    <form action="/postNotes" method="post" class="flex flex-col gap-5 justify-start w-96 text-gray-50 mb-2">
+        <label for="title">Title: </label>
+        <input type="text" name="title" class="text-black rounded-md bg-slate-300 h-8">
+        <label for="content">Content: </label>
+        <input type="text" name="content" class="text-black h-52 rounded-xl bg-slate-300 flex justify-start items-start">
+        <button type="submit">Done</button>
+    </form>
+    <form action="/" method="get"><button type="submit">Go Back</button></form>
+</body>
+</html>
