@@ -20,7 +20,7 @@
                 <%# console.log(note.notesid) %>
                 <div class="content border-2 border-white-500 w-72 h-auto flex flex-col gap-5 pt-2">
                     <h4 class="text-center text-xl font-bold"><%= note.title %></h4>
-                    <p class="indent-5 text-justify px-3"><%= note.content %></p>
+                    <p class="text-justify px-3"><%= note.content %></p>
 
                     <form action="/editNotes" method="post" class="flex justify-end mr-1.5 mb-1.5">
                         <input type="hidden" name="id" value="<%= note.notesid %>">

@@ -67,6 +67,20 @@ app.post("/editNotes", async (req, res) => {
     }
 });
 
+app.post("/editedNotes", async (req, res) => {
+    const {id, title, content} = req.body;
+    try {
+        const result = await db.query(
+            "UPDATE notes SET Title = $1, Content = $2 WHERE notesid = $3",
+            [title, content, id]
+        );
+        console.log("Successfully Edited");
+        res.redirect("/")
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 app.listen(port, ()=>{
     console.log(`Listening on Port ${port}`);
 });
