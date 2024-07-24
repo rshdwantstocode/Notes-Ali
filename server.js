@@ -20,8 +20,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
-app.get("/", (req, res) => {
-    res.render("index");
+app.get("/", async (req, res) => {
+    try {
+        const result = await db.query(
+            "SELECT * FROM notes"
+        );
+        // console.log(result.rows);
+        res.render("index", {
+            notes: result.rows
+        });
+    } catch (error) {
+        console.log(error);
+    }
+
 });
 
 app.get("/addNotes", (req, res) => {
