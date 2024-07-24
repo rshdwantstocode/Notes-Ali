@@ -8,19 +8,22 @@
     <link rel="stylesheet" href="/src/output.css">
 </head>
 <body>
-    <nav class="h-24 bg-gray-800 text-white p-6 indent-6 text-xl font-mono flex justify-between items-center">Ali-Notes
+    <nav class="h-24 bg-gray-800 text-white p-6 indent-6 text-xl font-mono flex justify-between items-center"><a href="/">Ali-Notes</a>
         <form action="/addNotes" method="get" class="flex place-content-center">
             <button class=" w-24 h-11 border-2  bg-slate-600 rounded-lg transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 duration-300">Add</button>
         </form>
     </nav>
     <%# console.log(notes) %>
     <div class="container w-full h-screen bg-slate-500 text-white flex items-center justify-center">
-        <div class="content border-2 border-pink-200 w-11/12 h-screen flex flex-wrap items-start justify-start gap-x-14 gap-y-0 p-8">
+        <div class="content border-2 border-pink-200 w-11/12 h-screen flex flex-wrap items-start justify-start gap-x-14 gap-y-4 p-8">
             <% notes.forEach(note => { %>
+                <%# console.log(note.notesid) %>
                 <div class="content border-2 border-white-500 w-72 h-auto flex flex-col gap-5 pt-2">
                     <h4 class="text-center text-xl font-bold"><%= note.title %></h4>
                     <p class="indent-5 text-justify px-3"><%= note.content %></p>
-                    <form action="" method="get" class="flex justify-end mr-1.5 mb-1.5">
+
+                    <form action="/editNotes" method="post" class="flex justify-end mr-1.5 mb-1.5">
+                        <input type="hidden" name="id" value="<%= note.notesid %>">
                         <button type="submit" class=" bg-slate-600 h-12 w-12 flex justify-center place-items-center rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-7">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />

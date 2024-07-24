@@ -53,6 +53,20 @@ app.post("/postNotes", async (req,res) => {
     }
 });
 
+app.post("/editNotes", async (req, res) => {
+    const {id, title, content} = req.body;
+    try {
+        const result = await db.query(
+            "SELECT * FROM notes WHERE notesid = ($1)", [id]
+        );
+        res.render("edit", {
+            editnotes: result.rows
+        });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 app.listen(port, ()=>{
     console.log(`Listening on Port ${port}`);
 });
