@@ -81,6 +81,20 @@ app.post("/editedNotes", async (req, res) => {
     }
 });
 
+app.post("/deleteNote", async (req, res) => {
+    const {id} = req.body;
+    try {
+        await db.query(
+            "DELETE FROM notes WHERE notesid = $1",
+            [id]
+        );
+        console.log("Successfully Deleted");
+        res.redirect("/");
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 app.listen(port, ()=>{
     console.log(`Listening on Port ${port}`);
 });
