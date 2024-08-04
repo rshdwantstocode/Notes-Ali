@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 app.get("/", async (req, res) => {
     try {
         const result = await db.query(
-            "SELECT * FROM notes"
+            "SELECT * FROM notes ORDER BY date_created DESC"
         );
         // console.log(result.rows);
         res.render("index", {
@@ -69,10 +69,11 @@ app.post("/editNotes", async (req, res) => {
 
 app.post("/editedNotes", async (req, res) => {
     const {id, title, content} = req.body;
+    const newDate = new Date();
     try {
         const result = await db.query(
-            "UPDATE notes SET Title = $1, Content = $2 WHERE notesid = $3",
-            [title, content, id]
+            "UPDATE notes SET Title = $1, Content = $2, date_created = $3 WHERE notesid = $4",
+            [title, content, newDate, id]
         );
         console.log("Successfully Edited");
         res.redirect("/")
